@@ -14,7 +14,6 @@ class Users extends React.Component {
   }
   render() {
     const { users } = this.props;
-
     return (
       <div>
         {users &&
