@@ -7,19 +7,17 @@
     "type": "git"
   },
   "scripts": {
-    "build": "browserify ./src/client/client.js -o ./build/bundle.js -t babelify && babel ./src/ --out-dir ./build/",
-    "watch": "concurrently \"watchify ./src/client/client.js -o ./build/bundle.js -t babelify -v\" \"babel ./src/ --out-dir ./build/ --watch\"",
-    "start": "nodemon ./build/server/server.js"
+    "server:start": "nodemon ./build-server/server/server.js",
+    "server:watch": "concurrently \"watchify ./src/client/client.js -o ./build-server/bundle.js -t babelify -v\" \"babel ./src/ --out-dir ./build-server/ --watch\"",
+    "server:build": "browserify ./src/client/client.js -o ./build-server/bundle.js -t babelify && babel ./src/ --out-dir ./build-server/",
+    "client:builddev": "webpack",
+    "client:watch": "webpack -w",
+    "client:server": "webpack-dev-server --open --hot",
+    "client:buildprod": "NODE_ENV=production webpack --config ./webpack.production.config.js --progress"
   },
   "author": "Guo Tingjie<iamnabob@126.com>",
   "license": "MIT",
   "dependencies": {
-    "babel-cli": "6.26.0",
-    "babel-core": "6.26.0",
-    "babel-preset-es2015": "6.24.1",
-    "babel-preset-react": "6.24.1",
-    "babelify": "8.0.0",
-    "browserify": "14.5.0",
     "concurrently": "3.6.0",
     "express": "4.16.3",
     "isomorphic-fetch": "2.2.1",
@@ -27,7 +25,30 @@
     "react": "16.0.0",
     "react-dom": "16.0.0",
     "react-redux": "5.0.7",
-    "redux": "4.0.0",
-    "watchify": "3.9.0"
+    "redux": "4.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "6.26.0",
+    "babel-core": "6.26.0",
+    "babel-preset-es2015": "6.24.1",
+    "babel-preset-react": "6.24.1",
+    "babelify": "8.0.0",
+    "browserify": "14.5.0",
+    "watchify": "3.9.0",
+    "autoprefixer": "^9.1.5",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-react-transform": "^3.0.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.19",
+    "css-loader": "^1.0.0",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "html-webpack-plugin": "^3.2.0",
+    "postcss-loader": "^3.0.0",
+    "react-transform-hmr": "^1.0.4",
+    "style-loader": "^0.23.0",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.1",
+    "webpack-dev-server": "^3.1.9"
   }
 }

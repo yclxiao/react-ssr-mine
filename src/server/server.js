@@ -42,7 +42,6 @@ app.get("*", (req, res) => {
             <script>
               window.__APP_STATE = ${JSON.stringify(store.getState())};
             </script>
-            <script src="/bundle.js"></script>
           </body>
         </html>
       `);
